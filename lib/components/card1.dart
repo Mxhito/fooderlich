@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../fooderlich_theme.dart';
+import '../screens/fooderlich_theme.dart';
 import '../models/models.dart';
 
 class Card1 extends StatelessWidget {

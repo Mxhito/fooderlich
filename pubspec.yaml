@@ -29,3 +29,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/food_pics/
+    - assets/magazine_pics/
+    - assets/profile_pics/
+    - assets/sample_data/
