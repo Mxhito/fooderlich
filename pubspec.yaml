@@ -17,6 +17,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^3.0.1
 
+  provider: ^6.0.0
+  flutter_colorpicker: ^0.6.0
+  intl: ^0.17.0
+  uuid: ^3.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -33,3 +38,4 @@ flutter:
     - assets/magazine_pics/
     - assets/profile_pics/
     - assets/sample_data/
+    - assets/fooderlich_assets/
