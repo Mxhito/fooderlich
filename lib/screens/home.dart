@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../models/models.dart';
 import 'grocery_screen.dart';
 import 'explore_screen.dart';
