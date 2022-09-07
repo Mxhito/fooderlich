@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../models/models.dart';
 
 class EmptyGroceryScreen extends StatelessWidget {
   const EmptyGroceryScreen({Key? key}) : super(key: key);
@@ -19,9 +17,9 @@ class EmptyGroceryScreen extends StatelessWidget {
                 child: Image.asset('assets/fooderlich_assets/empty_list.png'),
               ),
             ),
-            const Text(
+            Text(
               'No Groceries',
-              style: TextStyle(fontSize: 21.0),
+              style: Theme.of(context).textTheme.headline6,
             ),
             const SizedBox(height: 16.0),
             const Text(
@@ -31,13 +29,14 @@ class EmptyGroceryScreen extends StatelessWidget {
             ),
             MaterialButton(
               textColor: Colors.white,
+              child: const Text('Browse Recipes'),
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0)),
+                borderRadius: BorderRadius.circular(30.0),
+              ),
               color: Colors.green,
               onPressed: () {
-                Provider.of<TabManager>(context, listen: false).goToRecipes();
+                // TODO: Update user's selected tab
               },
-              child: const Text('Browse Recipes'),
             ),
           ],
         ),

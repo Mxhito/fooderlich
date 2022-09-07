@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../screens/fooderlich_theme.dart';
+
+import '../fooderlich_theme.dart';
 import '../models/models.dart';
 import 'author_card.dart';
 
@@ -24,7 +25,9 @@ class Card2 extends StatelessWidget {
             image: AssetImage(recipe.backgroundImage),
             fit: BoxFit.cover,
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10.0),
+          ),
         ),
         child: Column(
           children: [

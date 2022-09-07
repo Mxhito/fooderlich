@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+
 import '../components/grocery_tile.dart';
 import '../models/models.dart';
-import 'grocery_item_screen.dart';
 
 class GroceryListScreen extends StatelessWidget {
   final GroceryManager manager;
 
-  const GroceryListScreen({Key? key, required this.manager}) : super(key: key);
+  const GroceryListScreen({
+    Key? key,
+    required this.manager,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +17,7 @@ class GroceryListScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: ListView.separated(
+        itemCount: groceryItems.length,
         itemBuilder: (context, index) {
           final item = groceryItems[index];
           return Dismissible(
@@ -25,16 +29,14 @@ class GroceryListScreen extends StatelessWidget {
               child: const Icon(
                 Icons.delete_forever,
                 color: Colors.white,
-                size: 50,
+                size: 50.0,
               ),
             ),
             onDismissed: (direction) {
               manager.deleteItem(index);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(
-                    '${item.name} dismised',
-                  ),
+                  content: Text('${item.name} dismissed'),
                 ),
               );
             },
@@ -49,19 +51,7 @@ class GroceryListScreen extends StatelessWidget {
                 },
               ),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => GroceryItemScreen(
-                      originalItem: item,
-                      onCreate: (item) {},
-                      onUpdate: (item) {
-                        manager.updateItem(item, index);
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                );
+                // TODO: Tap on grocery item
               },
             ),
           );
@@ -69,7 +59,6 @@ class GroceryListScreen extends StatelessWidget {
         separatorBuilder: (context, index) {
           return const SizedBox(height: 16.0);
         },
-        itemCount: groceryItems.length,
       ),
     );
   }

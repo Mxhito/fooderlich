@@ -1,63 +1,83 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../models/models.dart';
-import 'grocery_screen.dart';
+
 import 'explore_screen.dart';
+import 'grocery_screen.dart';
 import 'recipes_screen.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  // TODO: Home MaterialPage Helper
+
+  const Home({
+    Key? key,
+    required this.currentTab,
+  }) : super(key: key);
+
+  final int currentTab;
 
   @override
-  State<Home> createState() => _HomeState();
+  _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  static List<Widget> pages = [
-    const ExploreScreen(),
+  static List<Widget> pages = <Widget>[
+    ExploreScreen(),
     RecipesScreen(),
-    const GroceryScreen()
+    const GroceryScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TabManager>(
-      builder: (context, tabManager, child) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Fooderlich',
-              style: Theme.of(context).textTheme.headline6,
-            ),
+    // TODO: Wrap Consumer for AppStateManager
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Fooderlich',
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        actions: [
+          profileButton(),
+        ],
+      ),
+      body: IndexedStack(index: widget.currentTab, children: pages),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
+        currentIndex: widget.currentTab,
+        onTap: (index) {
+          // TODO: Update user's selected tab
+        },
+        items: <BottomNavigationBarItem>[
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.explore),
+            label: 'Explore',
           ),
-          body: IndexedStack(
-            index: tabManager.selectedTab,
-            children: pages,
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: 'Recipes',
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            selectedItemColor:
-                Theme.of(context).textSelectionTheme.selectionColor,
-            currentIndex: tabManager.selectedTab,
-            onTap: (index) {
-              tabManager.goToTab(index);
-            },
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.explore),
-                label: 'Explore',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.book),
-                label: 'Recipes',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.list),
-                label: 'To Buy',
-              ),
-            ],
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'To Buy',
           ),
-        );
-      },
+        ],
+      ),
+    );
+    // TODO: Add closing },);
+  }
+
+  Widget profileButton() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16.0),
+      child: GestureDetector(
+        child: const CircleAvatar(
+          backgroundColor: Colors.transparent,
+          backgroundImage: AssetImage(
+            'assets/profile_pics/person_stef.jpeg',
+          ),
+        ),
+        onTap: () {
+          // TODO: home -> profile
+        },
+      ),
     );
   }
 }
